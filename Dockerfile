@@ -9,7 +9,9 @@ RUN apt-get update && apt-get install -y --force-yes postgresql-9.4 && apt-get i
 #RUN useradd postgres
 #-p means create parent as nessesary
 RUN mkdir -p /usr/local/pgsql/data
+RUN mkdir -p /var/run/postgresql/9.4-main.pg_stat_tmp
 RUN chown postgres /usr/local/pgsql/data
+RUN chown postgres /var/run/postgresql/9.4-main.pg_stat_tmp
 
 env PATH $PATH:/usr/lib/postgresql/9.4/bin
 
@@ -23,5 +25,6 @@ RUN initdb -D /usr/local/pgsql/data
 
 EXPOSE 5432
  
-#CMD ["/etc/init.d/postgresql", "start"] 
-#ENTRYPOINT postgres -D /usr/local/pgsql/data
+#CMD ["/etc/init.d/postgresql", "start"]  -- this not working
+#ENTRYPOINT postgres -D /usr/local/pgsql/data -- this not working
+CMD ["postgres", "-D", "/usr/local/pgsql/data", "-c", "config_file=/etc/postgresql/9.4/main/postgresql.conf"]
