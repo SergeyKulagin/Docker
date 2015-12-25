@@ -23,6 +23,10 @@ RUN cd /
 RUN wget https://jdbc.postgresql.org/download/postgresql-9.4-1206-jdbc4.jar
 RUN mv postgresql-9.4-1206-jdbc4.jar /usr/local/share/jboss/standalone/deployments
 
+#config
+RUN wget https://raw.githubusercontent.com/SergeyKulagin/Docker/master/jboss/standalone.xml
+RUN mv standalone.xml /usr/local/share/jboss/standalone/configuration/standalone.xml
+
 USER appserver	
 RUN /usr/local/share/jboss/bin/add-user.sh --silent=true sergey 1
 RUN /usr/local/share/jboss/bin/add-user.sh --silent=true -a sergey 1

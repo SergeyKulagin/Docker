@@ -1,0 +1,22 @@
+pg: 
+ image: sergeykulagin/postgres9.4:v1
+ ports: 
+  - "5432:5432"
+
+#configuration: 
+# image: sergeykulagin/configurations:v2
+# volumes:
+# - /usr/local/share/jboss/standalone/configuration
+
+jboss:
+ image: jboss7.1.1:v1  
+ ports:
+ - "8080:8080"
+ - "9998:9999"
+ - "9990:9990"
+ links: 
+ - "pg:pg"
+ #volumes_from:
+ #- configuration
+ #- configuration
+ command: /usr/local/share/jboss/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0
