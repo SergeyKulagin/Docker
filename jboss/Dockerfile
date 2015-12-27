@@ -17,6 +17,9 @@ RUN ls .
 RUN sed -i 's/hibernate-jpa-2.0-api-1.0.1.Final.jar/hibernate-jpa-2.1-api-1.0.0.Final.jar/g' /usr/local/share/jboss/modules/javax/persistence/api/main/module.xml
 RUN adduser appserver
 RUN chown -R appserver /usr/local/share/jboss
+
+#add remote debug
+RUN echo "JAVA_OPTS='$JAVA_OPTS -Xrunjdwp:transport=dt_socket,address=8787,server=y,suspend=n'" >> /usr/local/share/jboss/bin/standalone.conf
  
 #driver
 RUN cd /
@@ -34,4 +37,6 @@ RUN /usr/local/share/jboss/bin/add-user.sh --silent=true -a sergey 1
 EXPOSE 8080
 EXPOSE 9990
 EXPOSE 9999
+EXPOSE 8787
+
 #ENTRYPOINT /usr/local/share/jboss/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0 

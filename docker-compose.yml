@@ -14,9 +14,11 @@ jboss:
  - "8080:8080"
  - "9998:9999"
  - "9990:9990"
+ - "8787:8787"
  links: 
  - "pg:pg"
  #volumes_from:
  #- configuration
  #- configuration
  command: /usr/local/share/jboss/bin/standalone.sh -Djboss.bind.address=0.0.0.0 -Djboss.bind.address.management=0.0.0.0
+# command: vi /usr/local/share/jboss/bin/run.sh
