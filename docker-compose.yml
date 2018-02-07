@@ -9,7 +9,8 @@ pg:
 # - /usr/local/share/jboss/standalone/configuration
 
 jboss:
- image: jboss7.1.1:v1  
+ build: ./jboss
+ #image: jboss7.1.1:v1  
  ports:
  - "8080:8080"
  - "9998:9999"
