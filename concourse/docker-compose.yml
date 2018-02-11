@@ -3,24 +3,26 @@ version: '3'
 services:
   concourse-db:
     image: postgres:9.6
+    volumes: ["~:/test", ".:/test1", "/Docker:/test2"]
     environment:
       POSTGRES_DB: concourse
       POSTGRES_USER: concourse
       POSTGRES_PASSWORD: changeme
-      PGDATA: /database
+      PGDATA: /database      
 
   concourse-web:
     image: concourse/concourse
+    privileged: true
     links: [concourse-db]
     command: web
     depends_on: [concourse-db]
     ports: ["8080:8080"]
-    volumes: ["./keys/web:/concourse-keys"]
+    volumes: ["/Docker/concourse/keys/web:/concourse-keys"]
     restart: unless-stopped # required so that it retries until concourse-db comes up
     environment:
       CONCOURSE_BASIC_AUTH_USERNAME: concourse
       CONCOURSE_BASIC_AUTH_PASSWORD: changeme
-      CONCOURSE_EXTERNAL_URL: "http://192.168.99.100:8080"
+      CONCOURSE_EXTERNAL_URL: "${CONCOURSE_EXTERNAL_URL}"
       CONCOURSE_POSTGRES_HOST: concourse-db
       CONCOURSE_POSTGRES_USER: concourse
       CONCOURSE_POSTGRES_PASSWORD: changeme
@@ -32,6 +34,7 @@ services:
     links: [concourse-web]
     depends_on: [concourse-web]
     command: worker
-    volumes: ["./keys/worker:/concourse-keys"]
+    volumes: ["/Docker/concourse/keys/worker:/concourse-keys"]
     environment:
       CONCOURSE_TSA_HOST: concourse-web
+      CONCOURSE_BAGGAGECLAIM_DRIVER: native
