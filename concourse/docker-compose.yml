@@ -3,7 +3,6 @@ version: '3'
 services:
   concourse-db:
     image: postgres:9.6
-    volumes: ["~:/test", ".:/test1", "/Docker:/test2"]
     environment:
       POSTGRES_DB: concourse
       POSTGRES_USER: concourse
