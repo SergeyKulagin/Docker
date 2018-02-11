@@ -36,4 +36,4 @@ services:
     volumes: ["/Docker/concourse/keys/worker:/concourse-keys"]
     environment:
       CONCOURSE_TSA_HOST: concourse-web
-      CONCOURSE_BAGGAGECLAIM_DRIVER: native
+      CONCOURSE_BAGGAGECLAIM_DRIVER: naive
