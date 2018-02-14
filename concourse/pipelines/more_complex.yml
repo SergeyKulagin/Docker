@@ -1,1 +1,23 @@
-todo todo
+resources:
+- name: git-project
+  type: git
+  source: 
+    uri: https://bitbucket.org/SergeyKulagin/samples.git
+    branch: master
+
+jobs: 
+- name: git-complex
+  plan:
+  - get: git-project
+    trigger: true
+  - task: t1
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source: 
+          repository: maven
+          tag: 3-jdk-8-alpine
+      run: 
+        path: ci/build.sh
+
