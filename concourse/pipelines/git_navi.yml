@@ -2,7 +2,7 @@ resources:
 - name: git-test
   type: git
   source: 
-    url: https://github.com/SergeyKulagin/Docker.git
+    uri: https://github.com/SergeyKulagin/Docker
     branch: master
 
 jobs:
