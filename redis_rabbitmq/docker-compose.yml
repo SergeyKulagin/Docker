@@ -4,6 +4,7 @@ redis:
   - "6379:6379"
 
 rabbit:
- image: rabbitmq:3
+ image: rabbitmq:3-management
  ports:
  - "5672:5672"
+ - "15672:15672"
