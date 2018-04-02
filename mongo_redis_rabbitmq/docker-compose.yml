@@ -1,0 +1,14 @@
+mongo:
+ image: mongo
+ ports: 
+  - "27017:27017"
+
+redis:
+ image: redis
+ ports: 
+  - "6379:6379"
+
+rabbit:
+ image: rabbitmq:3
+ ports:
+ - "5672:5672"
