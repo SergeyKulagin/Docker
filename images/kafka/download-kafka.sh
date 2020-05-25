@@ -1,9 +1,6 @@
 #!/bin/sh -e
 
-# shellcheck disable=SC1091
-#source "/usr/bin/versions.sh"
-
-echo "downloading kafka..."
+echo "Downloading kafka..."
 
 FILENAME="kafka_${SCALA_VERSION}-${KAFKA_VERSION}.tgz"
 
