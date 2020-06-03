@@ -1,7 +1,7 @@
 # About
 Kafka image adopted for Kubernetes Stateful pods
 based on https://github.com/wurstmeister/kafka-docker.
-I did a little clean-up and adopted for my needs.
+I did a little clean-up and adopted it for my needs.
 # Build command
 ```
 docker buildx build \
