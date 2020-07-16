@@ -9,3 +9,5 @@ docker buildx build \
  --tag sergeykulagin/kafka:2.5.0 \
  --push .
 ```
+# Kubernetes example
+https://github.com/SergeyKulagin/kubernetes/tree/master/kafka
